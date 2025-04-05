@@ -1,0 +1,3 @@
+<app-header [isLogged]="isLoggedIn" (logoutEvent)="setLogin($event)"/>
+<router-outlet (activate)="onActivate($event)"/>
+<app-footer/>
