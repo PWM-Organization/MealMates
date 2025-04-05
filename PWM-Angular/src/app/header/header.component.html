@@ -17,30 +17,33 @@
                     <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/login.html';" class="guest-text">Invitado</a>
                     <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/profile.html';" class="user-text" style="display: none">Nombre_usuario</a>
                 </div>
-                <div class="user-menu-items guest-items">
-                    <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/login.html';" class="menu-item">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Iniciar sesión
-                    </a>
-                    <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/login.html#register';" class="menu-item">
-                        <i class="fas fa-user-plus"></i>
-                        Registrarse
-                    </a>
-                </div>
-                <div class="user-menu-items user-items" style="display: none">
-                    <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/profile.html';" class="menu-item">
-                        <i class="fas fa-user-edit"></i>
-                        Mi perfil
-                    </a>
-                    <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/weekly-planner.html';" class="menu-item">
-                        <i class="fas fa-calendar-week"></i>
-                        Planificador
-                    </a>
-                    <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/login.html';" class="menu-item logout">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Cerrar sesión
-                    </a>
-                </div>
+                @if(isLoggedIn){
+                    <div class="user-menu-items user-items">
+                        <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/profile.html';" class="menu-item">
+                            <i class="fas fa-user-edit"></i>
+                            Mi perfil
+                        </a>
+                        <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/weekly-planner.html';" class="menu-item">
+                            <i class="fas fa-calendar-week"></i>
+                            Planificador
+                        </a>
+                        <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/login.html';" class="menu-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Cerrar sesión
+                        </a>
+                    </div>
+                } @else {
+                    <div class="user-menu-items guest-items">
+                        <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/login.html';" class="menu-item">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Iniciar sesión
+                        </a>
+                        <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/login.html#register';" class="menu-item">
+                            <i class="fas fa-user-plus"></i>
+                            Registrarse
+                        </a>
+                    </div>
+                }
             </div>
         </div>
     </div>
