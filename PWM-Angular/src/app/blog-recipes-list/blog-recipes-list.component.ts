@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-blog-recipes-list',
+  standalone: true,
   imports: [],
   templateUrl: './blog-recipes-list.component.html',
   styleUrls: ['./blog-recipes-list.component.css', '../../styles.css'],

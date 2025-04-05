@@ -1,11 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  standalone: true,
+  imports: [RouterModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css', '../../styles.css']
 })
 export class HeaderComponent {
-  isLoggedIn = true;
+  @Input() isLogged: boolean = false;
+  @Output() logoutEvent = new EventEmitter<boolean>();
+
+  logout() {
+    this.logoutEvent.emit(false);
+  }
+  
 }
