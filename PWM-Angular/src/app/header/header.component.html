@@ -1,6 +1,6 @@
 <header class="header">
     <div class="brand">
-        <a href="#" onclick="window.location.href = window.baseUrl + '/index.html'; return false;"><h1>MealMates</h1></a>
+        <a href="#" routerLink="/"><h1>MealMates</h1></a>
     </div>
     <nav class="navigation">
         <ul>
@@ -17,7 +17,7 @@
                     <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/login.html';" class="guest-text">Invitado</a>
                     <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/profile.html';" class="user-text" style="display: none">Nombre_usuario</a>
                 </div>
-                @if(isLoggedIn){
+                @if(isLogged) {
                     <div class="user-menu-items user-items">
                         <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/profile.html';" class="menu-item">
                             <i class="fas fa-user-edit"></i>
@@ -27,14 +27,14 @@
                             <i class="fas fa-calendar-week"></i>
                             Planificador
                         </a>
-                        <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/login.html';" class="menu-item logout">
+                        <a class="menu-item logout" routerLink="/" (click)="logout()">
                             <i class="fas fa-sign-out-alt"></i>
                             Cerrar sesión
                         </a>
                     </div>
                 } @else {
                     <div class="user-menu-items guest-items">
-                        <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/login.html';" class="menu-item">
+                        <a routerLink="/login" class="menu-item">
                             <i class="fas fa-sign-in-alt"></i>
                             Iniciar sesión
                         </a>
