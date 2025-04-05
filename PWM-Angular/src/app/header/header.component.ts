@@ -15,5 +15,4 @@ export class HeaderComponent {
   logout() {
     this.logoutEvent.emit(false);
   }
-  
 }
