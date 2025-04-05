@@ -1,0 +1,49 @@
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: var(--accent-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.brand h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.navigation {
+    background-color: var(--accent-color);
+}
+
+.navigation ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+    color: var(--secondary-color);
+}
+
+.user-icon i {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.mobile-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
