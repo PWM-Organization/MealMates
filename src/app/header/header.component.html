@@ -14,12 +14,15 @@
             <i class="fas fa-user-circle"></i>
             <div class="user-menu">
                 <div class="user-menu-header">
-                    <a class="guest-text" routerLink="/login">Invitado</a>
-                    <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/profile.html';" class="user-text" style="display: none">Nombre_usuario</a>
+                    @if(isLogged) {
+                        <a routerLink="/profile" class="user-text">Nombre_usuario</a>
+                    } @else {
+                        <a  routerLink="/login" class="guest-text">Invitado</a>
+                    }
                 </div>
                 @if(isLogged) {
                     <div class="user-menu-items user-items">
-                        <a href="javascript:void(0);" onclick="window.location.href = window.baseUrl + '/src/profile.html';" class="menu-item">
+                        <a  routerLink="/profile" class="menu-item">
                             <i class="fas fa-user-edit"></i>
                             Mi perfil
                         </a>
