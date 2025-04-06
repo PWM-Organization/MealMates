@@ -1,0 +1,33 @@
+@for (recipe of recipes; track recipe.id){
+    <div class="recipe-card simple">
+        <div class="recipe-image">
+            <img src="{{recipe.image}}" alt="{{recipe.alt}}"/>
+            <div class="recipe-actions">
+                @if(recipeType === 1){
+                    <button class="edit-btn" routerLink="/recipe-generator"><i class="fas fa-edit"></i></button>
+                    <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                } @else if (recipeType === 2) {
+                    <button class="save-btn"><i class="fas fa-bookmark"></i></button>
+                } @else if (recipeType === 3) {
+                    <button class="bookmark-btn"><i class="far fa-bookmark"></i></button>
+                }
+            
+            </div>
+        </div>
+        <div class="recipe-content">
+            <h3>{{recipe.title}}</h3>
+            <div class="recipe-info">
+                <span><i class="far fa-clock"></i> {{recipe.time}}</span>
+                <span><i class="fas fa-signal"></i> {{recipe.difficulty}}</span>
+            </div>
+            <div class="recipe-categories">
+                @for(cat of recipe.categories; track cat){
+                    <span>{{cat}}</span>
+                }
+            </div>
+            @if(recipeType === 2 || recipeType === 3){
+                <button class="recipe-button" routerLink="/recipe">Ver receta</button>
+            }
+        </div>
+    </div>
+}
