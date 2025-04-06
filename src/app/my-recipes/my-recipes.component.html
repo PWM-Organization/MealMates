@@ -1,0 +1,23 @@
+<main class="recipes-container">
+    <div class="title-header">
+        <h1>Mis Recetas</h1>
+    </div>
+    <div class="tab">
+        <button class="tablink active" onclick="openTab(event, 'my-recipes')">Mis recetas</button>
+        <button class="tablink" onclick="openTab(event, 'saved-recipes')">Recetas guardadas</button>
+    </div>
+
+    <div id="my-recipes" class="recipes-grid tab-content active">
+        <div class="my-recipes-list active">
+            <!-- Las recetas se insertarán aquí dinámicamente -->
+        </div>
+        <a routerLink="/recipe-generator" class="add-recipe-btn">
+            <i class="fas fa-plus"></i> Nueva Receta
+        </a>
+    </div>
+    <div id="saved-recipes" class="recipes-grid tab-content">
+        <div class="my-recipes-list">
+            <!-- Las recetas se insertarán aquí dinámicamente -->
+        </div>
+    </div>
+</main>
