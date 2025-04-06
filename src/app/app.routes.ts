@@ -7,6 +7,7 @@ import { BlogComponent } from './blog/blog.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RecipeGeneratorComponent } from './recipe-generator/recipe-generator.component';
+import { WeeklyPlannerComponent } from './weekly-planner/weekly-planner.component';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -17,4 +18,6 @@ export const routes: Routes = [
   { path: 'recipe', component: RecipeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'recipe-generator', component: RecipeGeneratorComponent },
+  { path: 'weekly-planner', component: WeeklyPlannerComponent },
+  
 ];
