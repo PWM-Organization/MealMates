@@ -3,6 +3,7 @@ import { HeaderComponent } from './app/header/header.component';
 import { FooterComponent } from './app/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './app/login/login.component';
+import { ProfileComponent } from './app/profile/profile.component';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent {
     this.isLoggedIn = logged;
   }
   onActivate(event: any) {
-    if (event instanceof LoginComponent) {
+    if (event instanceof LoginComponent || event instanceof ProfileComponent) {
       event.loginEvent.subscribe((logged: boolean) => {
         this.setLogin(logged);
       });
