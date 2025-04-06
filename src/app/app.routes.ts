@@ -8,6 +8,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RecipeGeneratorComponent } from './recipe-generator/recipe-generator.component';
 import { WeeklyPlannerComponent } from './weekly-planner/weekly-planner.component';
+import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -19,5 +20,6 @@ export const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'recipe-generator', component: RecipeGeneratorComponent },
   { path: 'weekly-planner', component: WeeklyPlannerComponent },
+  { path: 'my-recipes', component: MyRecipesComponent },
   
 ];
