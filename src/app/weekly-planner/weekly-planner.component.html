@@ -34,12 +34,14 @@
 
     <section class="weekly-menu">
         <div class="days-grid">
-            <!-- Los días de la semana y sus recetas se cargarán dinámicamente -->
-            <div class="loading">
-                <i class="fas fa-spinner fa-spin"></i>
-                <p>Cargando planificador...</p>
-            </div>
+            @for (day of weeklyPlan; track day){
+                <div class="day-card">
+                    <h3>{{day}}</h3> 
+                </div>
+            }
+            
         </div>
+        <app-recipes-list [recipeType]="3"/>
         <a class="generate-button">Generar receta</a>
     </section>
 </main>
