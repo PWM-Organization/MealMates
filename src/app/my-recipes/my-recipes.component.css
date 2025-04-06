@@ -146,9 +146,10 @@
 }
 
 .my-recipes-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
 }
 
 @media (max-width: 768px) {

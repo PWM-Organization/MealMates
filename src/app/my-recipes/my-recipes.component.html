@@ -3,21 +3,22 @@
         <h1>Mis Recetas</h1>
     </div>
     <div class="tab">
-        <button class="tablink active" onclick="openTab(event, 'my-recipes')">Mis recetas</button>
-        <button class="tablink" onclick="openTab(event, 'saved-recipes')">Recetas guardadas</button>
+        <button class="tablink" [class.active]="activeTab === 'created'" (click)="changeTab('created')">Mis recetas</button>
+        <button class="tablink" [class.active]="activeTab === 'saved'" (click)="changeTab('saved')">Recetas guardadas</button>
     </div>
 
-    <div id="my-recipes" class="recipes-grid tab-content active">
-        <div class="my-recipes-list active">
-            <!-- Las recetas se insertarán aquí dinámicamente -->
+    @if(isCreated){
+        <div class="tab-content" [class.active]="activeTab === 'created'">
+            <app-recipes-list [recipeType]="1"/>
+            <a routerLink="/recipe-generator" class="add-recipe-btn">
+                <i class="fas fa-plus"></i> Nueva Receta
+            </a>
         </div>
-        <a routerLink="/recipe-generator" class="add-recipe-btn">
-            <i class="fas fa-plus"></i> Nueva Receta
-        </a>
-    </div>
-    <div id="saved-recipes" class="recipes-grid tab-content">
-        <div class="my-recipes-list">
-            <!-- Las recetas se insertarán aquí dinámicamente -->
+    } @else {
+        <div class="tab-content" [class.active]="activeTab === 'saved'">
+            <app-recipes-list [recipeType]="2"/>
         </div>
-    </div>
+    }
+    
+    
 </main>

@@ -8,6 +8,13 @@
     max-width: 400px;
 }
 
+.recipes-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
 .recipe-card:hover {
     transform: translateY(-5px);
 }
