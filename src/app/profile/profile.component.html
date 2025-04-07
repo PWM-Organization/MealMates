@@ -6,15 +6,15 @@
         </div>
         <nav class="sidebar-nav">
             <ul>
-                <li class="active" data-view="profile">
+                <li [class.active]="activeView === 'profile'" (click)="showView('profile')">
                     <i class="fas fa-user-edit"></i>
                     <span>Gestionar cuenta</span>
                 </li>
-                <li data-view="security">
+                <li [class.active]="activeView === 'security'" (click)="showView('security')">
                     <i class="fas fa-lock"></i>
                     <span>Seguridad cuenta</span>
                 </li>
-                <li data-view="settings">
+                <li [class.active]="activeView === 'settings'" (click)="showView('settings')">
                     <i class="fas fa-cog"></i>
                     <span>Ajustes</span>
                 </li>
@@ -28,7 +28,7 @@
 
     <div class="content-panel">
         <!-- Vista del perfil -->
-        <section class="profile-view active" id="profile-view">
+        <section class="profile-view" *ngIf="activeView === 'profile'" id="profile-view">
             <h2>Perfil de Usuario</h2>
             <div class="profile-content">
                 <div class="profile-image">
@@ -56,7 +56,7 @@
         </section>
 
         <!-- Vista de seguridad -->
-        <section class="security-view" id="security-view">
+        <section class="security-view" *ngIf="activeView === 'security'" id="security-view">
             <h2>Seguridad de la Cuenta</h2>
             <form class="security-form">
                 <div class="form-group">
@@ -76,7 +76,7 @@
         </section>
 
         <!-- Vista de ajustes -->
-        <section class="settings-view" id="settings-view">
+        <section class="settings-view" *ngIf="activeView === 'settings'" id="settings-view">
             <h2>Ajustes</h2>
             <form class="settings-form settings-grid">
                 <div class="settings-section">

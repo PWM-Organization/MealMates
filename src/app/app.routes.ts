@@ -21,5 +21,4 @@ export const routes: Routes = [
   { path: 'recipe-generator', component: RecipeGeneratorComponent },
   { path: 'weekly-planner', component: WeeklyPlannerComponent },
   { path: 'my-recipes', component: MyRecipesComponent },
-  
 ];
