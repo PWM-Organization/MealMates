@@ -62,18 +62,15 @@
 .content-panel {
     flex: 1;
     padding: 2rem;
+    background-color: #f5f5f5;
 }
 
 .content-panel section {
-    display: none;
     background: var(--white);
     border-radius: 10px;
     padding: 2rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.content-panel section.active {
-    display: block;
+    /* Eliminar display: none */
 }
 
 .content-panel h2 {
@@ -184,13 +181,6 @@
 }
 
 /* Settings View Styles */
-.settings-view {
-    display: none;
-}
-
-.settings-view.active {
-    display: block;
-}
 
 .settings-grid {
     display: grid;
