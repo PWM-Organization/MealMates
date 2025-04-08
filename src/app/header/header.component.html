@@ -1,17 +1,18 @@
 <header class="header">
     <div class="brand">
-        <a href="#" routerLink="/"><h1>MealMates</h1></a>
+        <a routerLink="/"><h1>MealMates</h1></a>
     </div>
     <nav class="navigation">
         <ul>
             <li><a routerLink="/blog">Blog</a></li>
-            @if(isLogged) {
+            <ng-container *ngIf="user; else loggedOutNav">
                 <li><a routerLink="/my-recipes">Mis recetas</a></li>
                 <li><a routerLink="/weekly-planner">Menú Semanal</a></li>
-            } @else {
+            </ng-container>
+            <ng-template #loggedOutNav>
                 <li><a routerLink="/login">Mis recetas</a></li>
                 <li><a routerLink="/login">Menú Semanal</a></li>
-            }
+            </ng-template>
         </ul>
     </nav>
     <div class="user-icon">
@@ -19,15 +20,16 @@
             <i class="fas fa-user-circle"></i>
             <div class="user-menu">
                 <div class="user-menu-header">
-                    @if(isLogged) {
-                        <a routerLink="/profile" class="user-text">Nombre_usuario</a>
-                    } @else {
-                        <a  routerLink="/login" class="guest-text">Invitado</a>
-                    }
+                    <ng-container *ngIf="user; else guestHeader">
+                        <a routerLink="/profile" class="user-text">{{ user.email }}</a>
+                    </ng-container>
+                    <ng-template #guestHeader>
+                        <a routerLink="/login" class="guest-text">Invitado</a>
+                    </ng-template>
                 </div>
-                @if(isLogged) {
+                <ng-container *ngIf="user; else guestMenuItems">
                     <div class="user-menu-items user-items">
-                        <a  routerLink="/profile" class="menu-item">
+                        <a routerLink="/profile" class="menu-item">
                             <i class="fas fa-user-edit"></i>
                             Mi perfil
                         </a>
@@ -35,12 +37,13 @@
                             <i class="fas fa-calendar-week"></i>
                             Planificador
                         </a>
-                        <a class="menu-item logout" routerLink="/" (click)="logout()">
+                        <a (click)="logout()" class="menu-item logout">
                             <i class="fas fa-sign-out-alt"></i>
                             Cerrar sesión
                         </a>
                     </div>
-                } @else {
+                </ng-container>
+                <ng-template #guestMenuItems>
                     <div class="user-menu-items guest-items">
                         <a routerLink="/login" class="menu-item">
                             <i class="fas fa-sign-in-alt"></i>
@@ -51,7 +54,7 @@
                             Registrarse
                         </a>
                     </div>
-                }
+                </ng-template>
             </div>
         </div>
     </div>
