@@ -9,7 +9,7 @@
     width: 250px;
     background-color: var(--white);
     padding: 2rem 0;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .user-info {
@@ -69,7 +69,7 @@
     background: var(--white);
     border-radius: 10px;
     padding: 2rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     /* Eliminar display: none */
 }
 
@@ -81,39 +81,106 @@
 /* Profile View Styles */
 .profile-content {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    flex-direction: row;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+/* Contenedor para imagen y botón */
+.profile-image-section {
+    flex-shrink: 0;
+    position: relative;
 }
 
 .profile-image {
     position: relative;
     width: 150px;
     height: 150px;
-    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
 }
 
-.profile-image img {
+.profile-picture {
+    display: block;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
     object-fit: cover;
+    transition: filter 0.3s ease;
 }
 
+/* Creamos un overlay semitransparente */
+.profile-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* Mostramos el overlay al hacer hover sobre el contenedor de imagen */
+.profile-image:hover::after {
+    opacity: 1;
+}
+
+/* Estilo del botón de cambio de foto */
 .change-photo {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 40px;
-    height: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background: var(--accent-color);
+    background: rgba(0, 0, 0, 0.6);
     color: var(--white);
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+/* Mostramos el botón al hacer hover sobre el contenedor de imagen */
+.profile-image:hover .change-photo {
+    opacity: 1;
+}
+
+/* Ocultamos el texto del botón, dejamos solo el icono */
+.change-photo span {
+    display: none;
+}
+
+.change-photo i {
+    font-size: 1.4rem;
+}
+
+/* Estilo cuando está subiendo (opcional) */
+.change-photo:disabled {
+    background: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+}
+
+/* Mensaje de error de subida */
+.profile-image-section .error-message {
+    margin-top: 0.5rem;
+    text-align: center;
+    color: var(--danger-color, #dc3545);
+    font-size: 0.9rem;
+}
+
+/* Formulario (ajustamos para layout flex) */
+.profile-form {
+    flex-grow: 1;
 }
 
 /* Form Styles */
@@ -144,6 +211,15 @@
     border-color: var(--accent-color);
 }
 
+.form-group input[readonly] {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+.form-actions {
+    margin-top: 2rem;
+}
+
 .save-button {
     background-color: var(--accent-color);
     color: var(--white);
@@ -155,12 +231,55 @@
     transition: background-color 0.3s ease;
 }
 
-.save-button:hover {
+.save-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.save-button:hover:not(:disabled) {
     background-color: #d35400;
+}
+
+.success-message {
+    color: green;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.error-message {
+    color: var(--danger-color, #dc3545);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+.firebase-error {
+    margin-bottom: 1rem;
+}
+
+.loading-indicator {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .profile-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile-image-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile-image {
+        margin-bottom: 1rem;
+    }
+    .profile-form {
+        width: 100%;
+    }
     .profile-container {
         flex-direction: column;
     }
@@ -176,7 +295,7 @@
 
     .form-group input,
     .form-group textarea {
-        font-size: 16px; /* Previene el zoom en iOS */
+        font-size: 16px;
     }
 }
 
@@ -193,7 +312,7 @@
     background: var(--white);
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .settings-header {
@@ -229,7 +348,7 @@
     border-bottom: none;
 }
 
-.toggle-label input[type="checkbox"] {
+.toggle-label input[type='checkbox'] {
     appearance: none;
     width: 44px;
     height: 24px;
@@ -241,7 +360,7 @@
     flex-shrink: 0;
 }
 
-.toggle-label input[type="checkbox"]::before {
+.toggle-label input[type='checkbox']::before {
     content: '';
     position: absolute;
     width: 20px;
@@ -253,11 +372,11 @@
     transition: transform 0.3s ease;
 }
 
-.toggle-label input[type="checkbox"]:checked {
+.toggle-label input[type='checkbox']:checked {
     background: var(--accent-color);
 }
 
-.toggle-label input[type="checkbox"]:checked::before {
+.toggle-label input[type='checkbox']:checked::before {
     transform: translateX(20px);
 }
 
@@ -291,4 +410,4 @@
 .settings-actions {
     text-align: right;
     padding-top: 1rem;
-} 
+}
