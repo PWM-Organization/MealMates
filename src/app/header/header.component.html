@@ -5,14 +5,10 @@
     <nav class="navigation">
         <ul>
             <li><a routerLink="/blog">Blog</a></li>
-            <ng-container *ngIf="user; else loggedOutNav">
+            <ng-container *ngIf="user">
                 <li><a routerLink="/my-recipes">Mis recetas</a></li>
                 <li><a routerLink="/weekly-planner">Menú Semanal</a></li>
             </ng-container>
-            <ng-template #loggedOutNav>
-                <li><a routerLink="/login">Mis recetas</a></li>
-                <li><a routerLink="/login">Menú Semanal</a></li>
-            </ng-template>
         </ul>
     </nav>
     <div class="user-icon">
