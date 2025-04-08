@@ -1,15 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { RecipeCardCreatedComponent } from '../recipe-card-created/recipe-card-created.component';
+import { RecipeCardDefaultComponent } from '../recipe-card-default/recipe-card-default.component';
+import { RecipeCardSavedComponent } from '../recipe-card-saved/recipe-card-saved.component';
 
 @Component({
   selector: 'app-recipes-list',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule, RecipeCardCreatedComponent, RecipeCardDefaultComponent, RecipeCardSavedComponent],
   templateUrl: './recipes-list.component.html',
   styleUrls: ['./recipes-list.component.css', '../../styles.css']
 })
 export class RecipesListComponent {
   @Input() recipeType = 1;
+
+  trackRecipe(index: number, recipe: any) {
+    return recipe.id;
+  }
+  
   recipes = [
     {
       "id": "1",
