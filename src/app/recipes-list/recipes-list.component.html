@@ -1,71 +1,14 @@
 <div class="recipes-list">
-    @for (recipe of recipes; track recipe.id){
-        @if(recipeType === 1 && recipe.option === 'created'){
-            <div class="recipe-card simple">
-                <div class="recipe-image">
-                    <img src="{{recipe.image}}" alt="{{recipe.alt}}"/>
-                    <div class="recipe-actions">
-                        <button class="edit-btn" routerLink="/recipe-generator"><i class="fas fa-edit"></i></button>
-                        <button class="delete-btn"><i class="fas fa-trash"></i></button>
-                    </div>
-                </div>
-                <div class="recipe-content">
-                    <h3>{{recipe.title}}</h3>
-                    <div class="recipe-info">
-                        <span><i class="far fa-clock"></i> {{recipe.time}}</span>
-                        <span><i class="fas fa-signal"></i> {{recipe.difficulty}}</span>
-                    </div>
-                    <div class="recipe-categories">
-                        @for(cat of recipe.categories; track cat){
-                            <span>{{cat}}</span>
-                        }
-                    </div>
-                </div>
-            </div>
-        } @else if(recipeType === 2 && recipe.option === 'saved'){
-            <div class="recipe-card simple">
-                <div class="recipe-image">
-                    <img src="{{recipe.image}}" alt="{{recipe.alt}}"/>
-                    <div class="recipe-actions">
-                        <button class="save-btn"><i class="fas fa-bookmark"></i></button>
-                    </div>
-                </div>
-                <div class="recipe-content">
-                    <h3>{{recipe.title}}</h3>
-                    <div class="recipe-info">
-                        <span><i class="far fa-clock"></i> {{recipe.time}}</span>
-                        <span><i class="fas fa-signal"></i> {{recipe.difficulty}}</span>
-                    </div>
-                    <div class="recipe-categories">
-                        @for(cat of recipe.categories; track cat){
-                            <span>{{cat}}</span>
-                        }
-                    </div>
-                    <button class="recipe-button" routerLink="/recipe">Ver receta</button>
-                </div>
-            </div>
-        } @else if(recipeType === 3){
-            <div class="recipe-card simple">
-                <div class="recipe-image">
-                    <img src="{{recipe.image}}" alt="{{recipe.alt}}"/>
-                    <div class="recipe-actions">
-                        <button class="bookmark-btn"><i class="far fa-bookmark"></i></button>
-                    </div>
-                </div>
-                <div class="recipe-content">
-                    <h3>{{recipe.title}}</h3>
-                    <div class="recipe-info">
-                        <span><i class="far fa-clock"></i> {{recipe.time}}</span>
-                        <span><i class="fas fa-signal"></i> {{recipe.difficulty}}</span>
-                    </div>
-                    <div class="recipe-categories">
-                        @for(cat of recipe.categories; track cat){
-                            <span>{{cat}}</span>
-                        }
-                    </div>
-                    <button class="recipe-button" routerLink="/recipe">Ver receta</button>
-                </div>
-            </div>
-        }
-    }
-</div>
+    <ng-container *ngFor="let recipe of recipes; trackBy: trackRecipe">
+      <ng-container *ngIf="recipeType === 1 && recipe.option === 'created'">
+        <app-recipe-card-created [recipe]="recipe"></app-recipe-card-created>
+      </ng-container>
+      <ng-container *ngIf="recipeType === 2 && recipe.option === 'saved'">
+        <app-recipe-card-saved [recipe]="recipe"></app-recipe-card-saved>
+      </ng-container>
+      <ng-container *ngIf="recipeType === 3">
+        <app-recipe-card-default [recipe]="recipe"></app-recipe-card-default>
+      </ng-container>
+    </ng-container>
+  </div>
+  
