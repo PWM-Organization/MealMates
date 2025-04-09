@@ -37,7 +37,4 @@ export class StorageService {
             }),
         );
     }
-
-    // Podrías añadir métodos para obtener URLs si no se guardan en Firestore,
-    // o para borrar imágenes si es necesario.
 }
