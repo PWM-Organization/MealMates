@@ -6,8 +6,9 @@ import { Observable, Subscription, switchMap, tap } from 'rxjs';
 import { User } from '@angular/fire/auth'; // Importar User si es necesario tipar
 
 import { AuthService } from '../services/auth.service';
-import { UserDataService, UserProfile } from '../services/user-data.service';
+import { UserDataService } from '../services/user-data.service';
 import { StorageService } from '../services/storage.service';
+import { UserProfile } from '../../models/UserProfile';
 
 @Component({
     selector: 'app-profile',
