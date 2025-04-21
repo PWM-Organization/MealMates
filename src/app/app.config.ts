@@ -1,27 +1,22 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideDatabase, getDatabase } from '@angular/fire/database';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCvpDJ4-iBYkRCn7zquz889D5lN9hb1E3s",
-  authDomain: "pwm-angular.firebaseapp.com",
-  databaseURL: "https://pwm-angular-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "pwm-angular",
-  storageBucket: "pwm-angular.firebasestorage.app",
-  messagingSenderId: "202980994346",
-  appId: "1:202980994346:web:7822e81b05b8cfdc2a8253",
-  measurementId: "G-6JYX61GH6V"
-};
+import { firebaseConfig } from './firebase.config';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), 
-    provideClientHydration(withEventReplay()),
-    provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideDatabase(() => getDatabase())
-  ]
+    providers: [
+        provideZoneChangeDetection({ eventCoalescing: true }),
+        provideRouter(routes),
+        provideClientHydration(withEventReplay()),
+        provideFirebaseApp(() => initializeApp(firebaseConfig)),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
+        provideStorage(() => getStorage()),
+    ],
 };

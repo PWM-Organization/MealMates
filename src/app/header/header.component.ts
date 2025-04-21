@@ -1,18 +1,29 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { User } from '@angular/fire/auth';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [RouterModule],
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css', '../../styles.css']
+    selector: 'app-header',
+    standalone: true,
+    imports: [RouterModule, CommonModule],
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css', '../../styles.css'],
 })
 export class HeaderComponent {
-  @Input() isLogged: boolean = false;
-  @Output() logoutEvent = new EventEmitter<boolean>();
+    @Input() user: User | null = null;
 
-  logout() {
-    this.logoutEvent.emit(false);
-  }
+    private authService = inject(AuthService);
+    private router = inject(Router);
+
+    async logout() {
+        try {
+            await this.authService.logout();
+            this.router.navigate(['/login']);
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
+    }
 }
