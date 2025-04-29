@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-generator',
@@ -8,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./recipe-generator.component.css', '../../styles.css'],
 })
 export class RecipeGeneratorComponent {
-
+  private router: Router = inject(Router);
+  onCancel() {
+    this.router.navigate(['/my-recipes']);
+  }
 }
