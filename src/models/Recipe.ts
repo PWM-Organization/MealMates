@@ -1,0 +1,16 @@
+interface Recipe {
+    id: string;
+    title: string;
+    description: string;
+    time: string;
+    difficulty: string;
+    categories: string[];
+    image: string;
+    alt: string;
+    rate: string;
+    ingredients: { ingredient: string; quantity: number; }[];
+    steps: string[];
+    chefName: string;
+    chefImage: string;
+    user_id: string;
+}
