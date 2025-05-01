@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
-import { LoginComponent } from './login/login.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { RegisterComponent } from './register/register.component';
-import { BlogComponent } from './blog/blog.component';
-import { RecipeComponent } from './recipe/recipe.component';
-import { ProfileComponent } from './profile/profile.component';
-import { RecipeGeneratorComponent } from './recipe-generator/recipe-generator.component';
-import { WeeklyPlannerComponent } from './weekly-planner/weekly-planner.component';
-import { MyRecipesComponent } from './my-recipes/my-recipes.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { BlogComponent } from './pages/blog/blog.component';
+import { RecipeComponent } from './pages/recipe/recipe.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { RecipeGeneratorComponent } from './pages/recipe-generator/recipe-generator.component';
+import { WeeklyPlannerComponent } from './pages/weekly-planner/weekly-planner.component';
+import { MyRecipesComponent } from './pages/my-recipes/my-recipes.component';
 
 // Importamos los guardias
 import { publicPagesGuard } from './guards/public-pages.guard';

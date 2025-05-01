@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BlogRecipesListComponent } from '../blog-recipes-list/blog-recipes-list.component';
+import { BlogRecipesListComponent } from '../components/blog-recipes-list/blog-recipes-list.component';
 import { RouterModule } from '@angular/router';
 
 @Component({
