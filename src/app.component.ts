@@ -15,7 +15,10 @@ import { CommonModule } from '@angular/common';
         RouterModule
     ],
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css', './styles.css'],
+    styleUrls: [
+        './app.component.css', 
+        './styles.css'
+    ],
 })
 export class AppComponent {
     private authService = inject(AuthService);

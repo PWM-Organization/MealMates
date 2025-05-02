@@ -10,7 +10,9 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  styleUrls: [
+    './index.component.css',
+  ]
 })
 export class IndexComponent {
 
