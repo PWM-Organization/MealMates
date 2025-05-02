@@ -3,39 +3,50 @@
         <h1>Editor de Recetas</h1>
     </div>
 
-    <form class="recipe-form" id="recipeForm">
+    <form [formGroup]="recipeForm" 
+      (submit)="addRecipe()" 
+      class="recipe-form" 
+      #form="ngForm">
+        <div style="display: none">
+            Form valid: {{recipeForm.valid}}
+            Has image: {{!!selectedImage}}
+        </div>
         <div class="form-section">
             <h2>Información Básica</h2>
             <div class="form-group">
                 <label for="title">Título de la Receta <span class="required">*</span></label>
-                <input type="text" id="title" name="title" required 
-                       minlength="5" maxlength="100" 
-                       pattern="^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s\-\,\.]+$"
-                       placeholder="Ej: Pasta Mediterránea"
-                       title="El título debe tener entre 5 y 100 caracteres y solo puede contener letras, números, espacios y algunos signos de puntuación">
-                <div class="error-message" id="title-error"></div>
+                <input type="text" id="title" formControlName="title" 
+                       placeholder="Ej: Pasta Mediterránea">
+                <div class="error-message" *ngIf="recipeForm.get('title')?.errors?.['required'] && recipeForm.get('title')?.touched">
+                    El título es obligatorio
+                </div>
             </div>
+
             <div class="form-row">
                 <div class="form-group">
                     <label for="prepTime">Tiempo (minutos) <span class="required">*</span></label>
-                    <input type="number" id="prepTime" name="prepTime" 
-                           required min="1" max="1440" step="1"
-                           title="El tiempo debe estar entre 1 y 1440 minutos (24 horas)">
+                    <input type="number" id="prepTime" formControlName="prepTime">
+                    <div class="error-message" *ngIf="recipeForm.get('prepTime')?.errors?.['required'] && recipeForm.get('prepTime')?.touched">
+                        El tiempo de preparación es obligatorio
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="difficulty">Dificultad <span class="required">*</span></label>
-                    <select id="difficulty" name="difficulty" required>
+                    <select id="difficulty" formControlName="difficulty">
                         <option value="">Selecciona una opción</option>
                         <option value="easy">Fácil</option>
                         <option value="medium">Media</option>
                         <option value="hard">Difícil</option>
                     </select>
-                    <div class="error-message" id="difficulty-error"></div>
+                    <div class="error-message" *ngIf="recipeForm.get('difficulty')?.errors?.['required'] && recipeForm.get('difficulty')?.touched">
+                        La dificultad es obligatoria
+                    </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="category">Categoría <span class="required">*</span></label>
-                <select id="category" name="category" required>
+                <select id="category" formControlName="category">
                     <option value="">Selecciona una categoría</option>
                     <option value="appetizer">Entrante</option>
                     <option value="main">Plato principal</option>
@@ -43,53 +54,59 @@
                     <option value="drink">Bebida</option>
                     <option value="snack">Aperitivo</option>
                 </select>
-                <div class="error-message" id="category-error"></div>
+                <div class="error-message" *ngIf="recipeForm.get('category')?.errors?.['required'] && recipeForm.get('category')?.touched">
+                    La categoría es obligatoria
+                </div>
             </div>
+
             <div class="form-group">
                 <label for="description">Descripción <span class="required">*</span></label>
-                <textarea id="description" name="description" 
-                          required minlength="20" maxlength="500"
+                <textarea id="description" formControlName="description" 
                           placeholder="Breve descripción de la receta..."
                           title="La descripción debe tener entre 20 y 500 caracteres"></textarea>
-                <div class="error-message" id="description-error"></div>
+                <div class="error-message" *ngIf="recipeForm.get('description')?.errors?.['required'] && recipeForm.get('description')?.touched">
+                    La descripción es obligatoria
+                </div>
             </div>
-        </div>
 
-        <div class="form-section">
             <h2>Ingredientes <span class="required">*</span></h2>
             <div class="form-group ingredients-section">
-                <div class="ingredients-list" id="ingredientsList">
-                    <div class="ingredient-item">
-                        <input type="text" name="ingredient[]" placeholder="Ingrediente" 
-                               required pattern="^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s\-\,\.]+$"
+                <div class="ingredients-list" formArrayName="ingredients">
+                    <div *ngFor="let ingredientGroup of ingredients.controls; let i=index" 
+                         [formGroupName]="i" 
+                         class="ingredient-item">
+                        <input type="text" formControlName="ingredient" 
+                               placeholder="Ingrediente"
                                title="Solo puede contener letras, números, espacios y algunos signos de puntuación">
-                        <input type="text" name="quantity[]" placeholder="Cantidad" 
-                               required pattern="^[0-9]+(\.[0-9]+)?\s*[A-Za-zÀ-ÖØ-öø-ÿ\s]*$"
+                        <input type="text" formControlName="quantity" 
+                               placeholder="Cantidad"
                                title="Formato válido: número seguido opcionalmente de unidad (ej: 200 g, 2 cucharadas)">
-                        <button type="button" class="remove-btn">×</button>
-                        <div class="error-message ingredient-error"></div>
+                        <button type="button" class="remove-btn" (click)="removeIngredient(i)">×</button>
+                        <div class="error-message" *ngIf="ingredients.at(i).get('ingredient')?.errors?.['required'] && ingredients.at(i).get('ingredient')?.touched">
+                            El ingrediente es obligatorio
+                        </div>
                     </div>
                 </div>
-                <button type="button" class="add-ingredient" id="addIngredient">
+                <button type="button" class="add-ingredient" (click)="addIngredient()">
                     <i class="fas fa-plus"></i> Añadir Ingrediente
                 </button>
             </div>
-        </div>
 
-        <div class="form-section">
             <h2>Preparación <span class="required">*</span></h2>
             <div class="form-group steps-section">
-                <div class="steps-list" id="stepsList">
-                    <div class="step-item">
-                        <span class="step-number">1</span>
-                        <textarea name="step[]" required minlength="10" 
+                <div class="steps-list" formArrayName="steps">
+                    <div *ngFor="let step of steps.controls; let i=index" class="step-item">
+                        <span class="step-number">{{i + 1}}</span>
+                        <textarea [formControlName]="i" 
                                   placeholder="Describe el paso..."
                                   title="Cada paso debe tener al menos 10 caracteres"></textarea>
-                        <button type="button" class="remove-btn">×</button>
-                        <div class="error-message step-error"></div>
+                        <button type="button" class="remove-btn" (click)="removeStep(i)">×</button>
+                        <div class="error-message" *ngIf="steps.at(i)?.errors?.['required'] && steps.at(i)?.touched">
+                            El paso es obligatorio
+                        </div>
                     </div>
                 </div>
-                <button type="button" class="add-step" id="addStep">
+                <button type="button" class="add-step" (click)="addStep()">
                     <i class="fas fa-plus"></i> Añadir Paso
                 </button>
             </div>
@@ -97,22 +114,33 @@
 
         <div class="form-group image-section">
             <label for="recipeImage">Imagen de la Receta <span class="required">*</span></label>
-            <div class="image-upload-area" id="imageUploadArea">
-                <input type="file" id="recipeImage" name="recipeImage" 
-                       accept="image/jpeg, image/png, image/webp" required hidden>
+            <div class="image-upload-area" (click)="fileInput.click()">
+                <input #fileInput 
+                    type="file" 
+                    id="recipeImage" 
+                    (change)="onImageSelected($event)"
+                    accept="image/jpeg, image/png, image/webp" 
+                    hidden>
                 <i class="fas fa-image"></i>
                 <p>Seleccionar imagen (JPG, PNG o WebP)</p>
-                <div class="error-message" id="recipeImage-error"></div>
+                <div class="error-message" *ngIf="!selectedImage && form.submitted">
+                    La imagen es obligatoria
+                </div>
             </div>
-            <div class="image-preview" id="imagePreview" style="display: none;">
-                <img src="#" alt="Vista previa" id="previewImg">
-                <button type="button" class="remove-image" id="removeImage">×</button>
+            <div class="image-preview" *ngIf="imagePreview">
+                <img [src]="imagePreview" alt="Vista previa">
+                <button type="button" class="remove-image" (click)="removeImage()">×</button>
             </div>
         </div>
 
         <div class="form-actions">
-            <button type="button" id="cancelButton" class="cancel-button" onclick="navigateTo('src/my-recipes.html')">Cancelar</button>
-            <button type="submit" class="save-button">Guardar Receta</button>
+            <button type="button" class="cancel-button" routerLink="/my-recipes" (click)="logButtonClick()">Cancelar</button>
+            <button type="button" 
+                class="save-button" 
+                [disabled]="!selectedImage" (click)="onSubmit()">
+                
+                Guardar Receta
+            </button>   
         </div>
     </form>
 </main>
