@@ -123,7 +123,7 @@ export class RecipeGeneratorComponent implements OnInit {
                 alt: this.recipeForm.value.title,
                 rate: '5', 
                 chefName: this.auth.currentUser.displayName || 'Chef Desconocido',
-                chefImage: this.auth.currentUser.photoURL || 'https://example.com/default-chef-image.jpg',
+                chefImage: this.auth.currentUser.photoURL || 'https://picsum.photos/seed/default/30/30',
                 user_id: this.auth.currentUser.uid
             };
             console.log('Datos de la receta preparados:', recipeData);
