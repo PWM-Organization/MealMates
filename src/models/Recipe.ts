@@ -8,7 +8,7 @@ export interface Recipe {
     image: string;
     alt: string;
     rate: string;
-    ingredients: { ingredient: string; quantity: number; }[];
+    ingredients: { ingredient: string; quantity: string; }[];
     steps: string[];
     chefName: string;
     chefImage: string;
