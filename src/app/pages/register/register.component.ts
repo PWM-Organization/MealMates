@@ -32,7 +32,10 @@ export function passwordMatchValidator(): ValidatorFn {
     standalone: true,
     imports: [RouterModule, ReactiveFormsModule, CommonModule],
     templateUrl: './register.component.html',
-    styleUrls: ['./register.component.css'],
+    styleUrls: [
+        './register.component.css', 
+        '../login/login.component.css'
+    ]
 })
 export class RegisterComponent {
     private fb = inject(FormBuilder);
