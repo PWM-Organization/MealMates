@@ -10,7 +10,13 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   templateUrl: './recipe-card-default.component.html',
-  styleUrls: ['./recipe-card-default.component.css'],
+  styleUrls: ['./recipe-card-default.component.css',
+    '../blog-recipes-list/blog-recipes-list.component.css',
+    '../recipe-card-default/recipe-card-default.component.css',
+    '../recipe-card-saved/recipe-card-saved.component.css',
+    '../recipes-list/recipes-list.component.css',
+    '../../../styles.css'
+  ]
 })
 export class RecipeCardDefaultComponent {
   @Input() recipe: any;

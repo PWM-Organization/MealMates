@@ -7,7 +7,14 @@ import { RouterModule } from '@angular/router';
   selector: 'app-recipe-card-saved',
   imports: [CommonModule, RouterModule],
   templateUrl: './recipe-card-saved.component.html',
-  styleUrls: ['./recipe-card-saved.component.css'],
+  styleUrls: ['./recipe-card-saved.component.css',
+    '../../pages/recipe/recipe.component.css',
+    '../blog-recipes-list/blog-recipes-list.component.css',
+    '../recipe-card-default/recipe-card-default.component.css',
+    '../recipe-card-created/recipe-card-created.component.css',
+    '../recipes-list/recipes-list.component.css',
+    '../../../styles.css'
+  ]
 })
 export class RecipeCardSavedComponent {
   @Input() recipe: any;
