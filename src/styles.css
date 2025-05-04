@@ -22,7 +22,7 @@ body {
 
 /* Featured Recipes Section */
 .featured-recipes {
-    padding: 4rem 2rem;
+    padding: 2rem 1rem;
     text-align: center;
     background-color: var(--primary-color);
 }
