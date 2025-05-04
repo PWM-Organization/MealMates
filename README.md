@@ -60,7 +60,6 @@ La aplicación utiliza Firestore para almacenar los datos principales. La estruc
 
 -   `users`: Almacena información del perfil de cada usuario registrado (asociado al UID de Authentication).
 -   `recipes`: Contiene los detalles de todas las recetas (tanto públicas como creadas por usuarios), posiblemente incluyendo un campo `userId` para las recetas personales.
--   `weeklyPlans` (o similar): Guarda la planificación semanal de comidas asociada a cada usuario (e.g., por `userId`).
 
 Firebase Storage se utiliza para almacenar las imágenes asociadas a las recetas, generalmente organizadas en carpetas (e.g., `recipe-images/`).
 
