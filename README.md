@@ -1,19 +1,21 @@
-# MealMates
+# MealMates 🍲
 
 [![Angular Version](https://img.shields.io/badge/Angular-v19.2.6-DD0031?logo=angular)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7+-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 [![Firebase](https://img.shields.io/badge/Firebase-Platform-FFCA28?logo=firebase)](https://firebase.google.com/)
 
-MealMates es una aplicación web desarrollada con Angular y Firebase, diseñada para facilitar la gestión de recetas y la planificación semanal de comidas.
+**MealMates** es una aplicación web desarrollada con Angular y Firebase pensada para planificar tus comidas semanales y gestionar recetas personalizadas de forma eficiente y visual.
 
-**Asignatura:** Programación Web y Móvil
-**Fecha:** 4 Mayo 2025
+**📚 Asignatura:** Programación Web y Móvil  
 
-**Autores:**
+**📅 Fecha de entrega:** 4 Mayo 2025
 
--   Elena Artiles Morales
--   Pablo Monzón Toca
--   Francisco Javier López-Dufour Morales
+**👨‍💻 Autores:**
+- Elena Artiles Morales  
+- Pablo Monzón Toca  
+- Francisco Javier López-Dufour Morales
+
+---
 
 ## ✨ Características Principales
 
@@ -50,7 +52,9 @@ src/app/
 └── firebase.config.example.ts # Ejemplo de configuración de Firebase
 ```
 
-## 🔥 Estructura de Datos en Firebase (Firestore)
+---
+
+## 🔥 Estructura de Datos en Firebase
 
 La aplicación utiliza Firestore para almacenar los datos principales. La estructura esperada incluye colecciones como:
 
@@ -62,44 +66,62 @@ Firebase Storage se utiliza para almacenar las imágenes asociadas a las recetas
 
 ## 🚀 Cómo Empezar
 
-Sigue estos pasos para configurar y ejecutar el proyecto localmente:
+### 1. Requisitos Previos
 
-1.  **Requisitos Previos:**
+- Node.js y npm instalados.
+- Angular CLI:
+  ```bash
+  npm install -g @angular/cli
+  ```
 
-    -   Node.js y npm (o yarn) instalados.
-    -   Angular CLI instalado globalmente: `sudo npm install -g @angular/cli`
+### 2. Clonar el repositorio
 
-2.  **Clonar el repositorio:**
+```bash
+git clone https://github.com/PWM-Organization/MealMates.git
+cd MealMates-angular
+```
 
-    ```bash
-    git clone <URL_DEL_REPOSITORIO>
-    cd MealMates-angular
-    ```
+### 3. Instalar dependencias
 
-3.  **Instalar dependencias:**
+```bash
+npm install
+```
 
-    ```bash
-    npm install
-    ```
+### 4. Configurar Firebase
 
-4.  **Configurar Firebase:**
+1. Crea un proyecto en [Firebase Console](https://console.firebase.google.com/)
+2. Activa:
+   - **Firestore**
+   - **Authentication (Email/Password)**
+   - **Storage**
+3. En Firebase Console, ve a Project Settings > Configuración Web.
+4. Copia el objeto `firebaseConfig`.
 
-    -   Crea un proyecto en [Firebase Console](https://console.firebase.google.com/).
-    -   Dentro de tu proyecto Firebase, activa:
-        -   **Firestore Database**
-        -   **Authentication** (habilita el proveedor Email/Password)
-        -   **Storage**
-    -   Ve a la configuración de tu proyecto (Project settings) > Tus apps (Your apps) > Web.
-    -   Obtén el objeto de configuración de Firebase (`firebaseConfig`).
-    -   Renombra el archivo `src/firebase.config.example.ts` a `src/firebase.config.ts`.
-    -   Copia y pega tu objeto `firebaseConfig` dentro de `src/firebase.config.ts`, reemplazando el placeholder.
+Renombra el archivo:
 
-5.  **Ejecutar la aplicación:**
-    ```bash
-    ng serve -o
-    ```
-    La aplicación se compilará y se abrirá automáticamente en tu navegador en `http://localhost:4200/`.
+```bash
+mv src/firebase.config.example.ts src/firebase.config.ts
+```
+
+Pega tu configuración en el archivo recién renombrado.
+
+### 5. Iniciar la aplicación
+
+```bash
+ng serve
+```
+
+Abre tu navegador y ve a `http://localhost:4200/`.
+
+### 6. Compilar para Producción
+
+```bash
+ng build --prod
+```
+Esto generará una carpeta `dist/` con los archivos listos para producción.
+
+---
 
 ## 📄 Licencia
 
-(Opcional: Si tienes una licencia, menciónala aquí. Ej: Este proyecto está bajo la Licencia MIT.)
+Este proyecto se entrega en el marco académico de la Universidad de Las Palmas de Gran Canaria.
